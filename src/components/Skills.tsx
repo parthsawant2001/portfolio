@@ -163,7 +163,7 @@ export function Skills() {
               </div>
             ) : (
               <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(175px,1fr))", gap: 8 }}>
-                {cat.techs.map((t) => <TechCard key={t.n} l={t.logo} t={t} color={cat.color} />)}
+                {cat.techs.map((t) => <TechCard key={t.n} t={t} color={cat.color} />)}
               </div>
             )}
           </div>
