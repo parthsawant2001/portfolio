@@ -78,9 +78,9 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
     color: G,
     count: "04",
     techs: [
-      { n: "BullMQ", s: "Job queues, retries, workers" },
+      { logo:'', n: "BullMQ", s: "Job queues, retries, workers" },
       { logo: KAFKA, n: "Kafka", s: "Event streaming, partitioning" },
-      { n: "Message Queues", s: "Async processing patterns" },
+      { logo:'', n: "Message Queues", s: "Async processing patterns" },
       { logo: EVENTDRIVEN, n: "Event-Driven", s: "Architecture, CQRS, Saga" },
     ],
   },
