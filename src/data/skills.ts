@@ -57,7 +57,7 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
       { logo: NESTJS, n: "NestJS", s: "Microservices, DI, decorators" },
       { logo: SOCKETIO, n: "Socket.IO", s: "Real-time bidirectional" },
       { logo: REST, n: "REST APIs", s: "Design, versioning, auth" },
-      { logo: GRAPHQL, n: "GraphQL", s: "Schema, resolvers" },
+      // { logo: GRAPHQL, n: "GraphQL", s: "Schema, resolvers" },
     ],
   },
   {
@@ -107,7 +107,7 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
       { logo: EVENTDRIVEN, n: "Event-Driven Arch", s: "Pub/sub, eventual consistency" },
       { logo: DISTRIBUTED, n: "Distributed Systems", s: "Fault tolerance, consensus" },
       // { n: "CAP Theorem", s: "Consistency vs availability" },
-      { logo: LOADBALANCING, n: "Load Balancing", s: "Horizontal scaling strategies" },
+      // { logo: LOADBALANCING, n: "Load Balancing", s: "Horizontal scaling strategies" },
     ],
   },
   {
@@ -118,8 +118,8 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
     techs: [
       { logo: JS, n: "JavaScript", s: "Primary — 5+ years" },
       { logo: TYPESCRIPT, n: "TypeScript", s: "Primary — 3+ years" },
-      { logo: GO, n: "Go", s: "Learning — concurrency" },
-      { logo: RUST, n: "Rust", s: "Exploring — memory safety" },
+      { logo: GO, n: "Go", s: "Learning · concurrency model", learning: true },
+      { logo: RUST, n: "Rust", s: "Learning · memory safety", learning: true },
     ],
   },
   // {

@@ -1,8 +1,10 @@
 import { useRef, useState } from "react";
 import { useVisible } from "../hooks/useVisible";
 import { useScramble } from "../hooks/useScramble";
+import { useBreakpoint } from "../hooks/useBreakpoint";
 import { Card, Divider, SL } from "./ui";
 import { C, A, G } from "../theme";
+import { SectionFlash } from "./SectionFlash";
 
 function ExpBullet({ text }: { text: string }) {
   const [h, setH] = useState(false);
@@ -50,14 +52,16 @@ export function Experience() {
   const v = useVisible(ref);
   const expCoDisplay = useScramble("CAPTICO CONSULTANCY", v, 90);
   const eduTitleDisp = useScramble("EDUCATION",           v, 90);
+  const isMobile = useBreakpoint();
 
   return (
-    <section id="experience" style={{ padding: "6rem 2rem", maxWidth: 1100, margin: "0 auto" }}>
+    <section id="experience" style={{ padding: "6rem 2rem", maxWidth: 1100, margin: "0 auto", position: "relative" }}>
+      <SectionFlash text="> RETRIEVING FIELD_RECORDS... [OK]" />
       <SL n="05" label="EXPERIENCE" />
       <div ref={ref} style={{ opacity: v ? 1 : 0, transition: "all .8s", display: "flex", flexDirection: "column", gap: "1.2rem" }}>
 
         {/* Work card */}
-        <Card accent={C} style={{ padding: "2rem 2.5rem" }}>
+        <Card accent={C} style={{ padding: isMobile ? "1.5rem" : "2rem 2.5rem" }}>
           <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "flex-start", gap: 12 }}>
             <div>
               <div className="t-label" style={{ color: `${C}33`, fontSize: 9, marginBottom: 6 }}>{JOB.id}</div>
@@ -65,7 +69,7 @@ export function Experience() {
               <div className="t-label" style={{ color: A, fontSize: 9, marginBottom: 4 }}>{JOB.client}</div>
               <div className="t-body" style={{ color: `${C}66`, fontSize: 12, fontWeight: 300 }}>{JOB.role}</div>
             </div>
-            <div style={{ textAlign: "right" }}>
+            <div style={{ textAlign: isMobile ? "left" : "right" }}>
               <div style={{ border: `1px solid ${C}22`, borderRadius: 4, padding: "4px 12px", display: "inline-block", marginBottom: 6 }}>
                 <span className="t-meta" style={{ color: `${C}66`, fontSize: 10 }}>{JOB.period}</span>
               </div>
@@ -73,13 +77,13 @@ export function Experience() {
             </div>
           </div>
           <Divider />
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: 10 }}>
             {JOB.items.map((it, k) => <ExpBullet key={k} text={it} />)}
           </div>
         </Card>
 
         {/* Education card */}
-        <Card accent={C} style={{ padding: "2rem 2.5rem" }}>
+        <Card accent={C} style={{ padding: isMobile ? "1.5rem" : "2rem 2.5rem" }}>
           <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "flex-start", gap: 12 }}>
             <div>
               <div className="t-label" style={{ color: `${C}33`, fontSize: 9, marginBottom: 6 }}>EDU-01 · EDU-02</div>
@@ -91,7 +95,7 @@ export function Experience() {
             </div>
           </div>
           <Divider />
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: 12 }}>
             {EDUCATION.map(([eid, inst, deg, yr, grade]) => (
               <div key={eid} style={{ border: `1px solid ${C}18`, borderRadius: 5, padding: "14px 16px", background: `${C}04` }}>
                 <div className="t-label" style={{ color: `${C}33`, fontSize: 9, marginBottom: 5 }}>{eid}</div>

@@ -15,6 +15,7 @@ export interface Tech {
   n: string;
   logo: any;
   s: string;
+  learning?: boolean;
 }
 
 export interface SkillCategory {

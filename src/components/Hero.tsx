@@ -49,11 +49,11 @@ export function Hero({ onContact }: HeroProps) {
       </div>
 
       {/* Decorative corners */}
-      <div style={{ position: "absolute", top: 100, left: 32, opacity: 0.25, display: "flex", flexDirection: "column", gap: 8 }}>
+      <div className="mobile-hide" style={{ position: "absolute", top: 100, left: 32, opacity: 0.25, display: "flex", flexDirection: "column", gap: 8 }}>
         <DecoCorner size={24} color={C} />
         <DecoBars color={C} opacity={0.7} />
       </div>
-      <div style={{ position: "absolute", top: 100, right: 32, opacity: 0.25, display: "flex", flexDirection: "column", gap: 8, alignItems: "flex-end" }}>
+      <div className="mobile-hide" style={{ position: "absolute", top: 100, right: 32, opacity: 0.25, display: "flex", flexDirection: "column", gap: 8, alignItems: "flex-end" }}>
         <DecoCorner size={24} color={C} flip={true} />
         <DecoBars color={A} opacity={0.7} />
       </div>
@@ -97,9 +97,9 @@ export function Hero({ onContact }: HeroProps) {
 
       {/* Bio */}
       <p className="t-body" style={{ color: `${C}66`, maxWidth: 560, marginBottom: 36, fontWeight: 300 }}>
-        Building production-grade backend systems and microservices at{" "}
-        <span style={{ color: C }}>Captico / Airpay Payments</span>. From event-driven pipelines
-        to real-time KYC workflows — I architect and ship systems that handle scale.
+        I architect and ship production backend systems that handle real financial scale —{" "}
+        <span style={{ color: C }}>KYC pipelines, distributed loan processing</span>, and event-driven microservices.
+        I gravitate toward problems where correctness and throughput are both non-negotiable.
       </p>
 
       {/* CTA buttons */}
@@ -120,10 +120,10 @@ export function Hero({ onContact }: HeroProps) {
 
       {/* Bottom status bar */}
       <div style={{
-        position: "absolute", bottom: 0, left: 0, right: 0, height: 36,
+        position: "absolute", bottom: 0, left: 0, right: 0, minHeight: 36,
         borderTop: `1px solid ${C}08`, background: "rgba(2,8,20,.35)",
         display: "flex", alignItems: "center", justifyContent: "center",
-        gap: "2.5rem", padding: "0 2rem",
+        flexWrap: "wrap", gap: "0.4rem 1.5rem", padding: "6px 2rem",
       }}>
         {statusBar.map(([v, col]) => (
           <span key={v} className="t-code" style={{ color: col, fontSize: 11, fontWeight: 500, textShadow: `0 0 6px ${col}44` }}>

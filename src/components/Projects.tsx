@@ -1,12 +1,11 @@
 import { useRef, useState } from "react";
 import { useVisible } from "../hooks/useVisible";
 import { useScramble } from "../hooks/useScramble";
-import { Btn, Dot, Divider, GlassModal, SL } from "./ui";
+import { Dot, Divider, GlassModal, SL } from "./ui";
 import { C, A, G, NAVY, GLASS } from "../theme";
-import { ALL_PROJECTS } from "../data/projects";
+import { ALL_PROJECTS, CLASSIFIED_PROJECT } from "../data/projects";
 import type { Project } from "../types";
-
-const PAGE_SIZE = 6;
+import { SectionFlash } from "./SectionFlash";
 
 function ProjectModal({ p, onClose }: { p: Project; onClose: () => void }) {
   const titleDisplay = useScramble(p.code, true, 60);
@@ -44,29 +43,27 @@ function ProjectModal({ p, onClose }: { p: Project; onClose: () => void }) {
             </div>
           ))}
         </div>
-        {/* <Btn variant="ghost" size="sm">VIEW ON GITHUB →</Btn> */}
       </div>
     </GlassModal>
   );
 }
+
+// ─── Regular project card ─────────────────────────────────────────────────────
 
 function ProjectCard({ p, i, vis }: { p: Project; i: number; vis: boolean }) {
   const [hov, setHov] = useState(false);
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const inView = useVisible(ref, 0.1);
-  const [scrambleTick, setScrambleTick] = useState(0);
-  const codeDisplay = useScramble(p.code, inView || scrambleTick > 0, 42, scrambleTick);
+  const [tick, setTick] = useState(0);
+  const codeDisplay = useScramble(p.code, inView || tick > 0, 42, tick);
   const sc = p.status === "DEPLOYED" ? G : p.status === "ACTIVE" ? C : A;
-
-  const handleEnter = () => { setHov(true) };
-  const handleLeave = () => setHov(false);
 
   return (
     <>
       <div
-        onMouseEnter={handleEnter}
-        onMouseLeave={handleLeave}
+        onMouseEnter={() => setHov(true)}
+        onMouseLeave={() => setHov(false)}
         onClick={() => setOpen(true)}
         style={{
           position: "relative", background: GLASS,
@@ -87,7 +84,6 @@ function ProjectCard({ p, i, vis }: { p: Project; i: number; vis: boolean }) {
             background: `linear-gradient(90deg,transparent,${C},transparent)`, animation: "pulse 2s infinite",
           }} />
         )}
-        {/* Card header with fill sweep */}
         <div style={{ position: "relative", overflow: "hidden", flexShrink: 0 }}>
           <div style={{
             position: "absolute", inset: 0, background: C, borderRadius: "6px 6px 0 0",
@@ -110,8 +106,6 @@ function ProjectCard({ p, i, vis }: { p: Project; i: number; vis: boolean }) {
             </div>
           </div>
         </div>
-
-        {/* Card body */}
         <div style={{ padding: "20px 20px 18px", flex: 1, display: "flex", flexDirection: "column", gap: 14 }}>
           <div ref={ref}>
             <div className="t-h3" style={{
@@ -141,28 +135,117 @@ function ProjectCard({ p, i, vis }: { p: Project; i: number; vis: boolean }) {
   );
 }
 
+// ─── Classified card ──────────────────────────────────────────────────────────
+
+function ClassifiedCard({ vis }: { vis: boolean }) {
+  const [revealed, setRevealed] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  if (revealed) {
+    return (
+      <>
+        <ProjectCard p={CLASSIFIED_PROJECT} i={6} vis={vis} />
+        {open && <ProjectModal p={CLASSIFIED_PROJECT} onClose={() => setOpen(false)} />}
+      </>
+    );
+  }
+
+  return (
+    <div style={{
+      position: "relative", borderRadius: 6, overflow: "hidden",
+      border: `1px solid ${A}33`,
+      display: "flex", flexDirection: "column",
+      opacity: vis ? 1 : 0, transform: vis ? "none" : "translateY(18px)",
+      transition: `opacity .5s ${6 * 0.07}s,transform .5s ${6 * 0.07}s`,
+      background: `${A}05`,
+      backdropFilter: "blur(28px) saturate(1.7)", WebkitBackdropFilter: "blur(28px) saturate(1.7)",
+      boxShadow: `0 4px 32px rgba(0,0,0,.4), 0 0 0 1px ${A}0a`,
+      minHeight: 240,
+    }}>
+      {/* Danger accent line */}
+      <div style={{ height: 1, background: `linear-gradient(90deg,${A}88,${A}22,transparent)` }} />
+
+      {/* Header */}
+      <div style={{
+        display: "flex", alignItems: "center", justifyContent: "space-between",
+        padding: "10px 16px", borderBottom: `1px solid ${A}18`,
+        background: `${A}08`,
+      }}>
+        <span className="t-label" style={{ color: `${A}88`, fontSize: 10, fontWeight: 700 }}>PRJ-007</span>
+        <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
+          <span style={{
+            width: 4, height: 4, borderRadius: "50%", background: A,
+            animation: "pulse 2s infinite", display: "inline-block", boxShadow: `0 0 5px ${A}`,
+          }} />
+          <span className="t-label" style={{ color: A, fontSize: 9 }}>RESTRICTED</span>
+        </div>
+      </div>
+
+      {/* Redacted body */}
+      <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "28px 20px", gap: 16 }}>
+        {/* Redaction bars */}
+        <div style={{ width: "100%", display: "flex", flexDirection: "column", gap: 6, filter: "blur(2px)", userSelect: "none", pointerEvents: "none" }}>
+          {[80, 60, 90, 50].map((w, i) => (
+            <div key={i} style={{
+              height: 8, borderRadius: 2, background: `${A}22`,
+              width: `${w}%`,
+            }} />
+          ))}
+        </div>
+
+        {/* Classified label */}
+        <div style={{ textAlign: "center" }}>
+          <div className="t-code" style={{
+            color: A, fontSize: 13, fontWeight: 700, letterSpacing: ".2em",
+            textShadow: `0 0 12px ${A}66`, marginBottom: 6,
+          }}>
+            [CLASSIFIED]
+          </div>
+          <div className="t-label" style={{ color: `${A}66`, fontSize: 9, letterSpacing: ".18em", marginBottom: 20 }}>
+            CLEARANCE REQUIRED
+          </div>
+          <button
+            onClick={() => setRevealed(true)}
+            style={{
+              background: "none", border: `1px solid ${A}55`, borderRadius: 4,
+              color: A, fontFamily: "'JetBrains Mono',monospace",
+              fontSize: 9, fontWeight: 600, letterSpacing: ".15em",
+              padding: "7px 18px", cursor: "pointer", transition: "all .2s",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = `${A}14`;
+              e.currentTarget.style.boxShadow = `0 0 14px ${A}22`;
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "none";
+              e.currentTarget.style.boxShadow = "none";
+            }}
+          >
+            {">"} DECLASSIFY
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── Section ──────────────────────────────────────────────────────────────────
+
 export function Projects() {
   const ref = useRef<HTMLDivElement>(null);
   const v = useVisible(ref);
-  const [shown, setShown] = useState(PAGE_SIZE);
-  const visible = ALL_PROJECTS.slice(0, shown);
-  const hasMore = shown < ALL_PROJECTS.length;
 
   return (
-    <section id="projects" style={{ padding: "6rem 2rem", maxWidth: 1100, margin: "0 auto" }}>
+    <section id="projects" style={{ padding: "6rem 2rem", maxWidth: 1100, margin: "0 auto", position: "relative" }}>
+      <SectionFlash text="> ACCESSING /projects... [OK]" />
       <SL n="04" label="PROJECTS" />
       <div
         ref={ref}
-        style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(330px,1fr))", gap: "1.5rem", marginBottom: "2rem" }}
+        style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(min(330px,100%),1fr))", gap: "1.5rem" }}
       >
-        {visible.map((p, i) => <ProjectCard key={p.id} p={p} i={i} vis={v} />)}
-      </div>
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <Btn variant="ghost" size="md" disabled={!hasMore} onClick={() => setShown((s) => s + PAGE_SIZE)}>
-          {hasMore ? `SEE MORE PROJECTS (${ALL_PROJECTS.length - shown} remaining)` : "ALL PROJECTS SHOWN"}
-        </Btn>
+        {ALL_PROJECTS.map((p, i) => <ProjectCard key={p.id} p={p} i={i} vis={v} />)}
+        <ClassifiedCard vis={v} />
       </div>
     </section>
   );
 }
-

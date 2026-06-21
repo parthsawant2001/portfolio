@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Parth Sawant — Software Developer</title>
+        <title>Parth Sawant — Backend Engineer</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <div style={{ background: NAVY, minHeight: "100vh" }}>

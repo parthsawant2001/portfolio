@@ -8,10 +8,10 @@ export function Footer() {
       flexWrap: "wrap", gap: 12,
     }}>
       <span className="t-meta" style={{ color: `${C}25`, fontSize: 9 }}>
-        PARTH SAWANT · SOFTWARE DEVELOPER · MUMBAI · {new Date().getFullYear()}
+        PARTH SAWANT · BACKEND ENGINEER · MUMBAI · {new Date().getFullYear()}
       </span>
       <span className="t-meta" style={{ color: `${C}20`, fontSize: 9 }}>
-        PARTHPSAWANT20@GMAIL.COM · +91 9819262158
+        PARTHPSAWANT20@GMAIL.COM
       </span>
     </footer>
   );

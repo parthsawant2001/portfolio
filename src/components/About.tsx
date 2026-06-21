@@ -1,28 +1,39 @@
 import { useRef } from "react";
 import { useVisible } from "../hooks/useVisible";
 import { useDelayedScramble } from "../hooks/useScramble";
+import { useBreakpoint } from "../hooks/useBreakpoint";
 import { Dot, Divider, Field, SL } from "./ui";
 import { C, A, G, GLASS } from "../theme";
+import { SectionFlash } from "./SectionFlash";
+
+function calcXp() {
+  const start = new Date("2024-02-01");
+  const now = new Date();
+  const months = (now.getFullYear() - start.getFullYear()) * 12 + (now.getMonth() - start.getMonth());
+  return `${Math.floor(months / 12)}Y ${months % 12}M / PROD`;
+}
 
 export function About() {
   const ref = useRef<HTMLDivElement>(null);
   const v = useVisible(ref);
+  const isMobile = useBreakpoint();
 
-  const dobDisplay      = useDelayedScramble("1 JAN 2002",          v, 55,    0);
-  const specDisplay     = useDelayedScramble("HUMAN",                v, 60,  120);
-  const locDisplay      = useDelayedScramble("MUMBAI, IN",           v, 55,  260);
-  const statusDisplay   = useDelayedScramble("AVAILABLE",            v, 50,  400);
-  const clearDisplay    = useDelayedScramble("LVL-5 / DEV",          v, 52,  540);
-  const nameDisplay     = useDelayedScramble("PARTH SAWANT",         v, 45,  180);
-  const employerDisplay = useDelayedScramble("Captico Consultancy",  v, 48,  460);
-  const roleDisplay     = useDelayedScramble("Software Developer",   v, 50,  600);
-  const clientDisplay   = useDelayedScramble("Airpay Payments",      v, 46,  740);
-  const sinceDisplay    = useDelayedScramble("Feb 2024",             v, 58,  880);
-  const eduDisplay      = useDelayedScramble("B.Tech CE, CGPA 8.0", v, 44, 1020);
-  const stackDisplay    = useDelayedScramble("Node · NestJS · React",v, 40, 1160);
+  const xpDisplay      = useDelayedScramble(calcXp(),              v, 55,    0);
+  const specDisplay    = useDelayedScramble("HUMAN",               v, 60,  120);
+  const locDisplay     = useDelayedScramble("MUMBAI, IN",          v, 55,  260);
+  const statusDisplay  = useDelayedScramble("AVAILABLE",           v, 50,  400);
+  const clearDisplay   = useDelayedScramble("LVL-5 / DEV",         v, 52,  540);
+  const nameDisplay    = useDelayedScramble("PARTH SAWANT",        v, 45,  180);
+  const employerDisplay = useDelayedScramble("Captico Consultancy", v, 48,  460);
+  const roleDisplay    = useDelayedScramble("Backend Engineer",     v, 50,  600);
+  const clientDisplay  = useDelayedScramble("Airpay Payments",     v, 46,  740);
+  const sinceDisplay   = useDelayedScramble("Feb 2024",            v, 58,  880);
+  const eduDisplay     = useDelayedScramble("B.Tech CE, CGPA 8.0", v, 44, 1020);
+  const stackDisplay   = useDelayedScramble("Node · NestJS · React",v, 40, 1160);
 
   return (
-    <section id="about" style={{ padding: "6rem 2rem", maxWidth: 1100, margin: "0 auto" }}>
+    <section id="about" style={{ padding: "6rem 2rem", maxWidth: 1100, margin: "0 auto", position: "relative" }}>
+      <SectionFlash text="> DECRYPTING AGENT_PROFILE... [OK]" />
       <SL n="02" label="ABOUT" />
       <div
         ref={ref}
@@ -65,14 +76,19 @@ export function About() {
           </div>
 
           {/* Body */}
-          <div style={{ display: "grid", gridTemplateColumns: "210px 1fr", gap: 0 }}>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "210px 1fr", gap: 0 }}>
             {/* Left */}
-            <div style={{ borderRight: `1px solid ${C}18`, padding: "16px" }}>
+            <div style={{
+              borderRight: isMobile ? "none" : `1px solid ${C}18`,
+              borderBottom: isMobile ? `1px solid ${C}18` : "none",
+              padding: "16px",
+            }}>
               {/* Photo placeholder */}
               <div style={{
                 position: "relative", marginBottom: 16,
                 border: `1px solid ${C}33`, borderRadius: 4, overflow: "hidden",
                 background: "#020c1e", height: 190,
+                display: isMobile ? "none" : undefined,
               }}>
                 <svg style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}>
                   <line x1="0" y1="0" x2="100%" y2="100%" stroke={`${C}20`} strokeWidth="1" />
@@ -94,8 +110,12 @@ export function About() {
                   pointerEvents: "none", zIndex: 2,
                 }} />
               </div>
-              <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-                <Field n="2" label="DOB"       value={dobDisplay} />
+              <div style={{
+                display: "grid",
+                gridTemplateColumns: isMobile ? "1fr 1fr" : "1fr",
+                gap: isMobile ? "8px 16px" : 10,
+              }}>
+                <Field n="2" label="PROD EXP"  value={xpDisplay} />
                 <Field n="3" label="IN.SPEC"   value={specDisplay} />
                 <Field n="4" label="LOCATION"  value={locDisplay} />
                 <Field n="5" label="STATUS"    value={statusDisplay} color={G} />
@@ -109,14 +129,14 @@ export function About() {
                 <div className="t-label" style={{ color: `${C}33`, fontSize: 8, marginBottom: 4 }}>7 EPM STATUS /</div>
                 <div style={{ display: "flex", alignItems: "baseline", gap: 12, flexWrap: "wrap" }}>
                   <span className="t-h2" style={{ color: C, textShadow: `0 0 8px ${C}44` }}>{nameDisplay}</span>
-                  <span className="t-label" style={{ color: A, fontSize: 9 }}>SOFTWARE DEVELOPER</span>
+                  <span className="t-label" style={{ color: A, fontSize: 9 }}>BACKEND ENGINEER</span>
                 </div>
                 <div className="t-label" style={{ color: `${C}44`, fontSize: 9, marginTop: 3 }}>
                   8 TITLE / BACKEND ENGINEER · MICROSERVICES · EVENT-DRIVEN SYSTEMS
                 </div>
               </div>
               <Divider />
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px 20px", marginBottom: 14 }}>
+              <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "10px 20px", marginBottom: 14 }}>
                 <Field n="A" label="EMPLOYER"  value={employerDisplay} />
                 <Field n="B" label="CLIENT"    value={clientDisplay} />
                 <Field n="C" label="ROLE"      value={roleDisplay} />
@@ -131,9 +151,9 @@ export function About() {
               }}>
                 <div className="t-label" style={{ color: `${C}44`, fontSize: 9, marginBottom: 6 }}>BIOGRAPHY /</div>
                 <p className="t-body" style={{ color: `${C}88`, fontWeight: 300, fontSize: 12 }}>
-                  Software developer based in Mumbai with hands-on experience building production backend
-                  systems at Captico Consultancy for client Airpay Payments Pvt. Ltd. Specialises in
-                  microservices architecture, event-driven systems, and KYC/lending verification pipelines at scale.
+                  Backend engineer based in Mumbai with hands-on experience shipping production systems
+                  at Captico Consultancy for Airpay Payments Pvt. Ltd. Specialises in microservices
+                  architecture, event-driven processing, and KYC/lending verification pipelines at scale.
                 </p>
               </div>
               <div style={{
@@ -143,7 +163,6 @@ export function About() {
                 <p className="t-body" style={{ color: `${C}66`, fontWeight: 300, fontSize: 12 }}>
                   Work spans NestJS microservices, BullMQ job queues, distributed logging, and React ops
                   dashboards. Also built AI pipelines for sentiment analysis and LLM-driven diagram generation.
-                  Exploring Go, Rust, and distributed systems design.
                 </p>
               </div>
             </div>

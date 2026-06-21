@@ -24,6 +24,9 @@ export function GlobalStyles() {
       .t-label{font-size:.625rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase}
       .t-code{font-size:.6875rem;font-weight:400;letter-spacing:.06em}
       .t-meta{font-size:.625rem;font-weight:300;letter-spacing:.1em}
+      @media(max-width:640px){.mobile-hide{display:none!important}}
+      .no-scrollbar{scrollbar-width:none;-ms-overflow-style:none}.no-scrollbar::-webkit-scrollbar{display:none}
+      @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
     `;
     document.head.appendChild(s);
     return () => { document.head.removeChild(s); };

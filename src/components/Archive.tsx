@@ -17,10 +17,10 @@ export function Archive() {
               <div className="t-label" style={{ color: `${C}33`, fontSize: 9, marginBottom: 6 }}>ARC-001</div>
               <div className="t-h2" style={{ color: C, marginBottom: 4, textShadow: `0 0 8px ${C}33` }}>Notion & Google Drive</div>
               <div className="t-label" style={{ color: A, fontSize: 9, marginBottom: 14 }}>
-                Certificates · Hackathon · System Design · Study Notes
+                Resume · Certificates · Hackathon · System Design · Study Notes
               </div>
               <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-                {([["📄 NOTION", "#"], ["📁 DRIVE", "#"]] as const).map(([label, href]) => (
+                {([["📄 NOTION", "#"], ["📁 DRIVE", "https://drive.google.com/drive/folders/1QPR2Me9RWJ6NE6DBmylsN_sO7TmN6-V0"]] as const).map(([label, href]) => (
                   <Btn key={label} variant="secondary" size="sm" href={href}>{label}</Btn>
                 ))}
               </div>
