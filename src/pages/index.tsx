@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Head from "next/head";
 import { GlobalStyles } from "@/components/GlobalStyles";
 import { Background } from "@/components/Background";
@@ -9,12 +8,12 @@ import { Skills } from "@/components/Skills";
 import { Projects } from "@/components/Projects";
 import { Experience } from "@/components/Experience";
 import { Archive } from "@/components/Archive";
-import { ContactModal } from "@/components/ContactModal";
 import { Footer } from "@/components/Footer";
 import { NAVY } from "@/theme";
 
+const openMail = () => { window.location.href = "mailto:parthpsawant20@gmail.com"; };
+
 export default function Home() {
-  const [contact, setContact] = useState(false);
   return (
     <>
       <Head>
@@ -24,15 +23,14 @@ export default function Home() {
       <div style={{ background: NAVY, minHeight: "100vh" }}>
         <GlobalStyles />
         <Background />
-        <Nav onContact={() => setContact(true)} />
-        <Hero onContact={() => setContact(true)} />
+        <Nav onContact={openMail} />
+        <Hero onContact={openMail} />
         <About />
         <Skills />
         <Projects />
         <Experience />
         <Archive />
         <Footer />
-        {contact && <ContactModal onClose={() => setContact(false)} />}
       </div>
     </>
   );

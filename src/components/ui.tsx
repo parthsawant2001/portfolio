@@ -178,8 +178,8 @@ export function GlassModal({ children, onClose, maxWidth = 560 }: GlassModalProp
       <div style={{
         width: "100%", maxWidth, position: "relative",
         background: "rgba(4,14,38,.65)",
-        backdropFilter: "blur(40px) saturate(2) brightness(1.08)",
-        WebkitBackdropFilter: "blur(40px) saturate(2) brightness(1.08)",
+        backdropFilter: "blur(5px) saturate(2) brightness(1.08)",
+        WebkitBackdropFilter: "blur(5px) saturate(2) brightness(1.08)",
         border: `1px solid ${C}55`, borderRadius: 10,
         boxShadow: `0 12px 60px rgba(0,0,0,.75),0 0 0 1px rgba(0,245,255,.1),inset 0 1px 0 rgba(0,245,255,.18)`,
         animation: "fadeUp .2s ease",

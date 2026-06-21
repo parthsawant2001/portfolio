@@ -88,7 +88,7 @@ export function Nav({ onContact }: NavProps) {
                 {l}
               </button>
             ))}
-            <Btn variant="secondary" size="sm" onClick={onContact}>CONTACT</Btn>
+            {/* <Btn variant="secondary" size="sm" onClick={onContact}>CONTACT</Btn> */}
           </div>
         )}
       </nav>
@@ -117,11 +117,11 @@ export function Nav({ onContact }: NavProps) {
               {l}
             </button>
           ))}
-          <div style={{ paddingTop: "0.75rem" }}>
+          {/* <div style={{ paddingTop: "0.75rem" }}>
             <Btn variant="secondary" size="sm" onClick={() => { onContact(); setMenuOpen(false); }}>
               CONTACT
             </Btn>
-          </div>
+          </div> */}
         </div>
       )}
     </>

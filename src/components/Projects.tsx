@@ -244,7 +244,7 @@ export function Projects() {
         style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(min(330px,100%),1fr))", gap: "1.5rem" }}
       >
         {ALL_PROJECTS.map((p, i) => <ProjectCard key={p.id} p={p} i={i} vis={v} />)}
-        <ClassifiedCard vis={v} />
+        {/* <ClassifiedCard vis={v} /> */}
       </div>
     </section>
   );
