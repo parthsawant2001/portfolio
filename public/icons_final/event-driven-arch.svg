@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38 38" width="38" height="38">
+  <rect width="38" height="38" rx="7" fill="#1E1B4B"/>
+  <!-- Publisher -->
+  <circle cx="8" cy="19" r="5" fill="#6366F1" stroke="#818CF8" stroke-width="1"/>
+  <!-- Burst/lightning -->
+  <path d="M21 11 L17 19 L21 19 L17 27" stroke="#F59E0B" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Subscriber dots -->
+  <circle cx="31" cy="10" r="3.5" fill="#818CF8"/>
+  <circle cx="31" cy="19" r="3.5" fill="#818CF8"/>
+  <circle cx="31" cy="28" r="3.5" fill="#818CF8"/>
+  <!-- Lines -->
+  <line x1="13" y1="16" x2="27.5" y2="10.5" stroke="#4F46E5" stroke-width="1.2" stroke-dasharray="2,2"/>
+  <line x1="13" y1="19" x2="27.5" y2="19" stroke="#4F46E5" stroke-width="1.2" stroke-dasharray="2,2"/>
+  <line x1="13" y1="22" x2="27.5" y2="27.5" stroke="#4F46E5" stroke-width="1.2" stroke-dasharray="2,2"/>
+</svg>

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38 38" width="38" height="38">
+  <rect width="38" height="38" rx="7" fill="#0F172A"/>
+  <!-- 5 nodes in ring -->
+  <circle cx="19" cy="7"  r="3.5" fill="#38BDF8" stroke="#0EA5E9" stroke-width="1"/>
+  <circle cx="31" cy="15" r="3"   fill="#64748B" stroke="#475569" stroke-width="1"/>
+  <circle cx="27" cy="29" r="3"   fill="#64748B" stroke="#475569" stroke-width="1"/>
+  <circle cx="11" cy="29" r="3"   fill="#64748B" stroke="#475569" stroke-width="1"/>
+  <circle cx="7"  cy="15" r="3"   fill="#64748B" stroke="#475569" stroke-width="1"/>
+  <!-- Ring edges -->
+  <line x1="22" y1="8.5"  x2="28.5" y2="13"  stroke="#334155" stroke-width="1.2"/>
+  <line x1="30" y1="18"   x2="27.5" y2="26"  stroke="#334155" stroke-width="1.2"/>
+  <line x1="24.5" y1="30" x2="13.5" y2="30"  stroke="#334155" stroke-width="1.2"/>
+  <line x1="9.5" y1="27"  x2="8.5"  y2="18"  stroke="#334155" stroke-width="1.2"/>
+  <line x1="10"  y1="13"  x2="16"   y2="8.5" stroke="#334155" stroke-width="1.2"/>
+  <!-- Leader crown indicator -->
+  <path d="M16 5 L17.5 7 L19 5 L20.5 7 L22 5 L22 3 L16 3 Z" fill="#FBBF24" opacity="0.9"/>
+</svg>
