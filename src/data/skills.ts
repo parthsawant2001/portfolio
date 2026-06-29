@@ -38,8 +38,8 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
     color: C,
     count: "06",
     techs: [
-      { logo: JS, n: "JavaScript", s: "ES6+, async/await, DOM" },
-      { logo: TYPESCRIPT, n: "TypeScript", s: "Generics, strict mode" },
+      // { logo: JS, n: "JavaScript", s: "ES6+, async/await, DOM" },
+      // { logo: TYPESCRIPT, n: "TypeScript", s: "Generics, strict mode" },
       { logo: REACT, n: "React", s: "Hooks, Redux, SPA" },
       { logo: NEXTJS, n: "Next.js", s: "SSR, SSG, App Router" },
       { logo: TAILWIND, n: "Tailwind CSS", s: "Utility-first, responsive" },
